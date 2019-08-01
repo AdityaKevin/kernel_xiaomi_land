@@ -37,6 +37,9 @@ ifeq ($(CONFIG_ARM64_ERRATUM_843419), y)
 KBUILD_CFLAGS_MODULE	+= -mcmodel=large
 endif
 
+# Optimize for CPU
+KBUILD_CFLAGS	+= $(call cc-option,-march=armv8-a+crypto+crc,) $(call cc-option,-mcpu=cortex-a53+crypto+crc,)
+
 # Default value
 head-y		:= arch/arm64/kernel/head.o
 
